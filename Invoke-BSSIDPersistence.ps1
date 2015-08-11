@@ -21,7 +21,7 @@ function Invoke-BSSIDPersistence
 {
     Param(
         [Parameter(Mandatory=$true)]
-        [string]$NetworkName = "V5DS7",
+        [string]$NetworkName,
 
         [Parameter(Mandatory=$true)]
         [string]$EXEPath,
